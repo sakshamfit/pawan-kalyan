@@ -10,7 +10,7 @@
 
 The katana hero is encoded as WebP at its original 3840×1602 dimensions, quality 86. Other high-resolution originals are capped at 1800 pixels on their longest side and encoded at quality 82 for the smaller orbit panels. No images are upscaled. Pixel dimensions do not establish the original capture resolution. Background excerpts use a cinema crop, muted playback, delayed reveal, explicit start/end points and poster fallbacks; the controlled full-film dialog retains the official player.
 
-Official YouTube streaming quality is adaptive. Local fallback images stay at their native pixel dimensions and are not upscaled. Backgrounds play muted inline; posters remain underneath. Full films are opened in an accessible modal and also linked directly to YouTube. No soundtrack from the unrelated reference recording is reused.
+Official YouTube streaming quality is adaptive. Local fallback images stay at their native pixel dimensions and are not upscaled. Background film excerpts play muted inline; posters remain underneath. Full films are opened in an accessible modal and also linked directly to YouTube. The fixed OG SOUND control streams the official Firestorm lyric video by Thaman S as opt-in background music, at reduced volume; it pauses for a film modal or hidden tab. It never autoplays with sound, and no audio is downloaded or bundled. No soundtrack from the unrelated reference recording is reused.
 
 Detailed source provenance is retained in `docs/assets.json`, `docs/assets-update.json` and `docs/action-still-sources.json`. Public promotional availability does not transfer copyright; these remain the respective film/music owners' materials.
 

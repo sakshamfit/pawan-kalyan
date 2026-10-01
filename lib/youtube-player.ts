@@ -5,6 +5,8 @@
  * caller can fall back to the poster still and bundled clip. */
 export type YouTubePlayer = {
   mute(): void;
+  unMute(): void;
+  setVolume(volume: number): void;
   playVideo(): void;
   pauseVideo(): void;
   seekTo(seconds: number, allowSeekAhead: boolean): void;

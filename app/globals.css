@@ -264,3 +264,37 @@ em { font-family:Georgia,"Times New Roman",serif; font-weight:400; }
 .cinema-media iframe { width:var(--film-width,100%); height:var(--film-height,100%); left:50%; top:50%; transform:translate(-50%,-50%); }
 .tile-1 img,.tile-2 img,.tile-4 img,.tile-6 img,.tile-8 img { object-position:center; }
 @media(max-width:699px) { .mosaic-tile.tile-4 { left:calc(50% + 25.275%)!important; }.mosaic-tile.tile-5 { left:50%!important; }.end-mark .wordmark { font-size:43vw; } }
+
+/* The official Firestorm song is an opt-in soundtrack, with a compact live
+   equalizer so the background audio reads as music rather than a hidden video. */
+.music-control { position:fixed; z-index:36; right:25px; bottom:23px; color:#fff; mix-blend-mode:difference; }
+.music-toggle { min-height:48px; display:flex; align-items:center; gap:11px; padding:9px 12px; color:inherit; text-align:left; text-decoration:none; border:1px solid #ffffff85; background:#11100f48; backdrop-filter:blur(10px); transition:background .25s,border-color .25s,opacity .25s; }
+.music-toggle:hover:not(:disabled) { background:#da271bcc; border-color:#fff; }
+.music-toggle:disabled { cursor:wait; opacity:.62; }
+.music-equalizer { width:17px; height:18px; flex:none; display:flex; align-items:center; justify-content:center; gap:2px; }
+.music-equalizer i { display:block; width:2px; height:5px; background:currentColor; transform-origin:center; }
+.music-control[data-playing="true"] .music-equalizer i { animation:musicWave .78s ease-in-out infinite alternate; }
+.music-control[data-playing="true"] .music-equalizer i:nth-child(2) { animation-delay:-.26s; }
+.music-control[data-playing="true"] .music-equalizer i:nth-child(3) { animation-delay:-.52s; }
+.music-control[data-playing="true"] .music-equalizer i:nth-child(4) { animation-delay:-.13s; }
+@keyframes musicWave { from { transform:scaleY(.55); } to { transform:scaleY(2.8); } }
+.music-control-copy { display:flex; min-width:0; flex-direction:column; gap:4px; }
+.music-control-state { font-size:9px; line-height:1; letter-spacing:.13em; white-space:nowrap; }
+.music-control-track { max-width:160px; overflow:hidden; color:currentColor; opacity:.68; font-size:8px; line-height:1; letter-spacing:.12em; text-overflow:ellipsis; white-space:nowrap; }
+.music-control-symbol { width:14px; flex:none; margin-left:4px; text-align:center; font-size:12px; }
+.music-player-host { position:fixed; z-index:1; left:-240px; top:0; width:200px; height:200px; overflow:hidden; opacity:0; pointer-events:none; }
+.music-player-host iframe { width:200px; height:200px; border:0; }
+@media(max-width:699px) {
+  .playback-control { left:10px; right:auto; bottom:10px; }
+  .playback-control>a { font-size:8px; padding:8px; }
+  .playback-control button { font-size:8px; padding:8px; }
+  .music-control { right:10px; bottom:10px; }
+  .music-toggle { min-height:44px; gap:8px; padding:8px 9px; }
+  .music-control-track { max-width:105px; font-size:7px; }
+  .music-control-state { font-size:8px; }
+  .music-control-symbol { margin-left:1px; }
+}
+@media(prefers-reduced-motion:reduce) {
+  .music-control[data-playing="true"] .music-equalizer i { animation:none; }
+  .music-equalizer i { height:8px; }
+}
