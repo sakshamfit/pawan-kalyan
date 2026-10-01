@@ -71,6 +71,8 @@ The entrance uses `katana.mp4`; the wide action panel and Hungry Cheetah chapter
 
 Open `?showcase=1` for the existing 55-second guided tour and optional tab recorder. The tour waits for actual advancing footage, including the bundled clips.
 
+The bottom-corner **OG SOUND** control streams the official *Firestorm* lyric video by Thaman S as background music. It starts only after the visitor opts in, plays at a restrained volume, loops the full track, and pauses while a film dialog is open or the tab is hidden. If the embed is unavailable, the control links to the official YouTube track; no music file is downloaded or bundled.
+
 ## Verify
 
 ```sh

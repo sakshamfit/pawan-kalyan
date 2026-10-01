@@ -30,6 +30,9 @@
  *   7. .end-card         Credits, trailer call-to-action, legal line.
  *   8. .playback-control Global PAUSE FILMS / PLAY MOTION toggle plus the
  *                        link into ?showcase=1 (55-second guided tour).
+ *   9. .music-control    User-initiated Firestorm soundtrack control. Audio is
+ *                        streamed from the official YouTube lyric video and
+ *                        pauses while a film modal is open.
  *
  * ANIMATION TIMELINE
  *   One master GSAP timeline is pinned to .journey with scrub: 0.55, so scroll
@@ -57,6 +60,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Dialog, DialogContent, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { Sheet, SheetContent, SheetTitle, SheetDescription } from "@/components/ui/sheet";
 import { CinemaMedia } from "@/components/cinema-media";
+import { BackgroundMusic } from "@/components/background-music";
 import { ShowcaseController } from "@/components/showcase-controller";
 
 // The three official promotional films shown as chapters. `id` is the official
@@ -228,7 +232,9 @@ export default function Home() {
     <footer className="end-card" id="end"><p className="eyebrow">PAWAN KALYAN IN</p><div className="end-mark"><span>THEY CALL HIM</span><Wordmark /></div><div className="end-car-card"><CinemaMedia image="og-dual-guns.jpg" id="FbXOsVByKmk" start={52} end={84} aperture={16 / 9} className="footer-title-media" label="Firestorm — official animated lyric film" paused={paused || selected !== null} /><div className="car-title"><span>THEY CALL HIM</span><Wordmark /></div></div><div className="end-actions"><button onClick={() => openFilm(2)}>WATCH THE TRAILER <span className="play-icon" /></button><button onClick={() => navigate("home")}>BACK TO THE BEGINNING</button></div><div className="credits"><span>A FILM BY SUJEETH</span><span>MUSIC BY THAMAN S</span><span>DVV ENTERTAINMENT</span></div><div className="legal"><span>AN INDEPENDENT FAN EXPERIENCE</span><span>FILM & MUSIC BELONG TO THEIR RESPECTIVE OWNERS.</span><a href="https://www.youtube.com/watch?v=_8J8LwoVH_0" target="_blank" rel="noreferrer">OFFICIAL TRAILER</a></div></footer>
     {/* Global motion controls: entry to the 55-second showcase and a
         PAUSE FILMS / PLAY MOTION switch for every background clip. */}
-    <div className="playback-control">{!showcase && <a href="?showcase=1">55-SECOND SHOWCASE</a>}<button onClick={() => setPaused(!paused)} aria-label={paused ? "Resume background films" : "Pause background films"}>{paused ? "PLAY MOTION" : "PAUSE FILMS"}<span aria-hidden="true">{paused ? "▷" : "Ⅱ"}</span></button></div><div className="progress-line" aria-hidden="true" />
+    <div className="playback-control">{!showcase && <a href="?showcase=1">55-SECOND SHOWCASE</a>}<button onClick={() => setPaused(!paused)} aria-label={paused ? "Resume background films" : "Pause background films"}>{paused ? "PLAY MOTION" : "PAUSE FILMS"}<span aria-hidden="true">{paused ? "▷" : "Ⅱ"}</span></button></div>
+    <BackgroundMusic suspended={selected !== null} />
+    <div className="progress-line" aria-hidden="true" />
     {/* Chapter INDEX sheet — jump straight to any of the four chapters. */}
     <Sheet open={menu} onOpenChange={setMenu}><SheetContent className="chapter-menu"><SheetTitle className="menu-heading">THE OG INDEX</SheetTitle><SheetDescription className="menu-description">Enter at any chapter.</SheetDescription><nav>{[["home", "The return"], ["story", "His world"], ["films", "The films"], ["end", "OG"]].map(([id, label], i) => <button key={id} onClick={() => navigate(id)}><span>0{i + 1}</span>{label}</button>)}</nav><Wordmark /><p>A SUJEETH FILM<br />PAWAN KALYAN AS OJAS GAMBHEERA</p></SheetContent></Sheet>
     {/* Film modal — official YouTube player with sound and controls, plus a
